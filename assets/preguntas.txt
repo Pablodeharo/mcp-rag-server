@@ -1,0 +1,40 @@
+Preguntas RAG Puro:
+
+¿Qué es la fase de contención en la gestión de ciberincidentes?
+
+¿Cuáles son las fases principales de la gestión de un ciberincidente?
+
+¿Cómo se debe documentar un incidente según la guía de INCIBE?
+
+¿Qué diferencia hay entre un incidente de seguridad y una vulnerabilidad?
+
+¿Qué acciones se recomiendan durante la fase de erradicación?
+
+
+Preguntas TOOL Puro
+
+¿Qué severidad tiene un ataque de ransomware que cifró toda la red?
+
+Tengo un ransomware en un hospital público con filtración de historiales médicos, ¿debo notificarlo?
+
+Hubo un ataque DDoS a una tienda online durante 2 horas, ¿hay que notificarlo?
+
+¿Está disponible el CCN-CERT para atender mi incidente?
+
+Un empleado recibió un email de phishing y clickó el enlace, ¿qué severidad tiene esto?
+
+Tenemos un malware en el servidor de RRHH de una universidad que accedió a datos de estudiantes, ¿debemos notificar?
+
+¿Puedo contactar con INCIBE-CERT?
+
+Preguntas Ambas Rag + Tool
+
+¿Qué dice la guía sobre clasificación de severidad y cuál sería la severidad de un DDoS que tumbó nuestra web 3 horas?
+
+Explícame el proceso de notificación y verifica si debo notificar un phishing masivo en una entidad financiera
+
+¿Qué es un CSIRT según la guía y está disponible el CCN-CERT ahora?
+
+¿Cuáles son las fases de gestión y en cuál estoy si acabo de detectar un ransomware crítico?
+
+¿Qué dice la guía sobre contención de incidentes y debo notificar un malware en un ayuntamiento que accedió a datos de empadronamiento?

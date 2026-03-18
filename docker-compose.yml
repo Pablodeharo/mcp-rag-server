@@ -1,0 +1,59 @@
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.12.0
+    container_name: elasticsearch
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - ES_JAVA_OPTS=-Xms512m -Xmx512m
+    ports:
+      - "9200:9200"
+    volumes:
+      - es_data:/usr/share/elasticsearch/data
+    networks:
+      - rag-network
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:9200/_cluster/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+
+  rag_agent:
+    image: pablodeharo87/rag-agent:v2   # 👈 cambia versión
+    container_name: rag-agent
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    env_file:
+      - .env
+    environment:
+      - ELASTICSEARCH_URL=http://elasticsearch:9200
+      - LANGSMITH_API_KEY=${LANGSMITH_API_KEY}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    ports:
+      - "8123:8123"
+    networks:
+      - rag-network
+    restart: unless-stopped
+
+  streamlit_ui:
+    image: pablodeharo87/rag-ui:v1
+    container_name: rag-ui
+    depends_on:
+      - rag_agent
+    environment:
+      - LANGGRAPH_URL=http://rag-agent:8123
+    ports:
+      - "8501:8501"
+    networks:
+      - rag-network
+    restart: unless-stopped
+
+volumes:
+  es_data:
+    driver: local
+
+networks:
+  rag-network:
+    driver: bridge
